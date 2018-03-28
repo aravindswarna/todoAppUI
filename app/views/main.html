@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row">
+  <form name="todoForm">
+    <div class="col-md-8">
+      <div class="form-group">
+        <label for="text">Name:</label>
+        <input type="text" class="form-control" id="taskName" placeholder="Task Name" name="taskName" ng-model="main.task.name" required ng-maxlength="255">
+      </div>
+    </div>
+    <div class="col-md-4 bottom-align-text">
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary" ng-disabled="!todoForm.taskName.$valid" ng-click="main.createTask()">Add New Task</button>
+      </div>
+    </div>
+    </form>
+  </div>
+  <div class="row">
+  <div class="container">
+  <h3 ng-if="main.error!==''" >{{main.error}}</h3>
+  	
+  </div>
+  	
+  </div>
+  <div class="row">
+  	<div class="table-responsive">          
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Task #</th>
+        <th>Task</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="task in main.tasks">
+        <td>{{task.id}}</td>
+        <td>{{task.name}}</td>
+        <td>{{task.status}}</td>
+        <td><button type="submit" ng-if="task.status==='Pending'" class="btn btn-primary" ng-click="main.completeTask(task.id)">Complete</button>
+        	<button type="submit" class="btn btn-danger" ng-click="main.deleteTask(task.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+
+  </div>
+</div>
